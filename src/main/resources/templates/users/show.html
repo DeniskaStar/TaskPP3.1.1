@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html lang="en">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>Человек</title>
+</head>
+<body>
+<h2>Данные о работнике:</h2>
+<table class="table">
+    <tr>
+        <th>Email</th>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Должность</th>
+        <th>Зарплата</th>
+    </tr>
+    <tbody>
+    <tr>
+        <td th:text="${user.getEmail()}"></td>
+        <td th:text="${user.getName()}"></td>
+        <td th:text="${user.getSurname()}"></td>
+        <td th:text="${user.getPosition()}"></td>
+        <td th:text="${user.getSalary()}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<br>
+
+<div sec:authorize="hasRole('ROLE_ADMIN')">
+    <form th:method="GET" th:action="@{/admin}">
+        <input type="submit" value="Назад">
+    </form>
+</div>
+
+<br/>
+
+<form th:method="GET" th:action="@{/logout}">
+    <input type="submit" value="Выйти из профиля">
+</form>
+
+<br/>
+
+<div>
+    <b>
+    Авторизованный пользователь:
+    </b>
+    <span sec:authentication="name"></span>
+</div>
+
+<div>
+    <b>
+    Роль:
+    </b>
+    <span sec:authentication="principal.authorities"></span>
+</div>
+
+</body>
+</html>

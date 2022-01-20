@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Новый человек</title>
+</head>
+<body>
+
+<form th:method="POST" th:action="@{/admin}" th:object="${user}">
+    <label for="email" >Введите email:</label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
+    <label for="password" >Введите пароль:</label>
+    <input type="text" th:field="*{password}" id="password"/>
+    <br/>
+    <label for="name" >Введите имя:</label>
+    <input type="text" th:field="*{name}" id="name"/>
+    <br/>
+    <label for="surname" >Введите фамилию:</label>
+    <input type="text" th:field="*{surname}" id="surname"/>
+    <br/>
+    <label for="position" >Введите должность:</label>
+    <input type="text" th:field="*{position}" id="position"/>
+    <br/>
+    <label for="salary" >Введите зарплату:</label>
+    <input type="text" th:field="*{salary}" id="salary"/>
+    <br/>
+
+    <input th:type="checkbox" name="ADMIN" value="ROLE_ADMIN" id="admin">
+    <label th:for="admin">Admin</label>
+    <input th:type="checkbox" name="USER" value="ROLE_USER" id="user">
+    <label th:for="user">User</label>
+    <br/>
+
+    <input type="submit" value="Добавить человека"/>
+</form>
+
+<br/>
+
+<form th:method="GET" th:action="@{/admin}">
+    <input type="submit" value="Назад">
+</form>
+
+</body>
+</html>
